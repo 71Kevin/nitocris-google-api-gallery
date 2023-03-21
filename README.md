@@ -70,4 +70,4 @@ The website is 100% responsive, meaning it looks great on all screen sizes.
 
 The code is simple and follows the best practices of JavaScript.
 
-![GIF 21-03-2023 00-50-51](https://user-images.githubusercontent.com/37316637/226513671-d01f87ac-e3ff-4d73-a014-64177bfad0cb.gif)
+![image](https://user-images.githubusercontent.com/37316637/226515199-18bbaf27-74b2-478a-bdd1-fa2c7696fb79.png)
