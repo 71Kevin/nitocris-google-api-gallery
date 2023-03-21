@@ -1,6 +1,7 @@
 # nitocris-google-api-gallery
 
 This is a simple application that searches for images of the Fate Grand Order character Nitocris using the Google Images API.
+
 ![ezgif com-video-to-gif](https://user-images.githubusercontent.com/37316637/226515987-db33a7bb-6597-45f8-8c1b-7566c04c8449.gif)
 
 ## Libraries used
