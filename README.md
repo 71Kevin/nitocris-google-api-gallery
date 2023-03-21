@@ -70,5 +70,3 @@ The website is 100% responsive, meaning it looks great on all screen sizes.
 ## Code Quality
 
 The code is simple and follows the best practices of JavaScript.
-
-![desjqi5-0f436229-ebf5-4703-9a22-9a70c5385b4a (1)](https://user-images.githubusercontent.com/37316637/226513716-3a1a9247-a7df-4c6f-90fd-19c6ea0d63b0.png)
