@@ -3,7 +3,7 @@ const cheerio = require('cheerio');
 
 const getNitocrisImages = async () => {
   const nitocrisUrl =
-    'https://www.google.com/search?q=nitocris+fate+grand+order&tbm=isch&tbs=isz:l,ic:color,itp:photo';
+    'https://www.google.com/search?q=fate+grand+order+nitocris+danbooru&tbm=isch&tbs=isz:l,ic:color,itp:photo';
   try {
     const response = await axios.get(nitocrisUrl);
     const $ = cheerio.load(response.data);
