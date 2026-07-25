@@ -1,31 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>Nitocris Gallery</title>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
-      <link rel="stylesheet" href="/css/styles.css">
-   </head>
-   <body>
-      <div class="container">
-         <h1>Nitocris Gallery</h1>
-         <div class="gallery">
-            <% images.forEach(function (image) { %>
-            <a href="<%= image %>" data-lightbox="gallery">
-            <img src="<%= image %>" alt="Nitocris" onerror="this.style.display='none'"/>
-            </a>
-            <% }); %>
-         </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nitocris Gallery</title>
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-content">
+        <h1 class="site-title">Nitocris Gallery</h1>
+        <p class="site-subtitle">Fate / Grand Order</p>
+        <span class="image-count"><%= count %> image<%= count !== 1 ? 's' : '' %> found</span>
       </div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
-      <script>
-         lightbox.option({
-         	resizeDuration: 200,
-         	wrapAround: true,
-         	alwaysShowNavOnTouchDevices: true
-         });
-      </script>
-   </body>
+    </header>
+
+    <main class="container">
+      <% if (images.length === 0) { %>
+      <div class="empty-state">
+        <p>No images found. Please try again later.</p>
+        <a href="/" class="btn">Reload</a>
+      </div>
+      <% } else { %>
+      <div class="gallery" id="gallery">
+        <% images.forEach(function (image, index) { %>
+        <a
+          href="<%= image.full %>"
+          data-lightbox="nitocris-gallery"
+          data-title="Nitocris #<%= index + 1 %>"
+        >
+          <img
+            src="<%= image.thumb %>"
+            alt="Nitocris - image <%= index + 1 %>"
+            loading="lazy"
+          />
+        </a>
+        <% }); %>
+      </div>
+      <% } %>
+    </main>
+
+    <footer class="site-footer">
+      <p>Images sourced via Danbooru &middot; Fate / Grand Order &copy; TYPE-MOON / FGO PROJECT</p>
+    </footer>
+
+    <script src="/js/gallery.js"></script>
+  </body>
 </html>

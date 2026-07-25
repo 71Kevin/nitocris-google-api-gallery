@@ -1,6 +1,94 @@
-# nitocris-google-api-gallery
+# Nitocris Gallery
 
-This is a simple application that searches for images of the Fate Grand Order character Nitocris using the Google Images API.
+A gallery application that fetches and displays images of **Nitocris** from Fate/Grand Order using multiple public image board APIs.
+
+## Features
+
+- Multi-source image fetching: **Safebooru**, **Xbooru**, and Google Images (fallback)
+- All sources queried **in parallel** — results are combined and deduplicated
+- Built-in **image proxy** that bypasses CDN hotlink protection by forwarding requests server-side with the correct `Referer` header
+- In-memory cache with configurable TTL to avoid redundant API calls
+- Custom vanilla JS lightbox (no jQuery, no CDN dependency)
+- Responsive grid gallery with keyboard navigation (← → Esc)
+- Security headers via Helmet, HTTP logging via Morgan, response compression via Compression
+
+## Image Sources
+
+| Source | Type | Notes |
+|--------|------|-------|
+| [Safebooru](https://safebooru.org) | SFW | ~100 posts via `nitocris_(fate)` tag |
+| [Xbooru](https://xbooru.com) | NSFW | ~24 posts via `nitocris_(fate)` tag |
+| Google Images | Fallback | Scraping — unreliable, used only if both above fail |
+
+## Setup
+
+```bash
+npm install
+cp .env.example .env
+npm run dev
+```
+
+The app will be available at `http://localhost:3000`.
+
+## Environment Variables
+
+Copy `.env.example` to `.env` and adjust as needed:
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `PORT` | `3000` | Port Express listens on |
+| `SEARCH_URL` | Google Images URL | Custom URL for the Google Images fallback |
+| `CACHE_TTL_MS` | `300000` | Image cache lifetime in milliseconds (5 minutes) |
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm start` | Start the server |
+| `npm run dev` | Start with nodemon (auto-reload) |
+| `npm test` | Run unit tests |
+| `npm run test:coverage` | Run tests with coverage report |
+| `npm run lint` | Run ESLint |
+| `npm run lint:fix` | Run ESLint with auto-fix |
+| `npm run format` | Run Prettier |
+
+## Testing
+
+Unit tests cover the `getNitocrisImages` function in [src/lib/images.js](src/lib/images.js) using **Jest** with axios mocked:
+
+```bash
+npm test
+# or with coverage
+npm run test:coverage
+```
+
+Test cases:
+- Returns combined, shuffled images from all working sources
+- Uses the correct `thumb`/`full` URL fields for each source
+- Caches results — no duplicate API calls within the TTL window
+- Deduplicates images that share the same `full` URL across sources
+- Gracefully handles partial source failures
+- Throws a descriptive error when all sources fail
+- Filters out GIFs and non-image file types
+
+## Tech Stack
+
+- **Express** — web framework
+- **EJS** — server-side templating
+- **Axios** — HTTP client for API requests and image proxy
+- **Cheerio** — HTML parsing for the Google Images fallback
+- **Helmet** — security HTTP headers
+- **Morgan** — HTTP request logging
+- **Compression** — gzip response compression
+- **Dotenv** — environment variable management
+- **ESLint + Prettier** — code quality and formatting
+- **Nodemon** — development auto-reload
+
+## Character
+
+Nitocris is a Servant from the mobile game **Fate/Grand Order** by TYPE-MOON.
+All images are sourced from public image boards and belong to their respective artists.
+
 
 ![ezgif com-crop](https://user-images.githubusercontent.com/37316637/226516125-7d4748b3-9105-4bfd-a634-1701e11dea49.gif)
 
