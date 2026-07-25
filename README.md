@@ -90,7 +90,7 @@ Nitocris is a Servant from the mobile game **Fate/Grand Order** by TYPE-MOON.
 All images are sourced from public image boards and belong to their respective artists.
 
 
-![ezgif com-crop](https://user-images.githubusercontent.com/37316637/226516125-7d4748b3-9105-4bfd-a634-1701e11dea49.gif)
+<img width="1462" height="1083" alt="image" src="https://github.com/user-attachments/assets/6c80079d-c210-425e-8eb2-e89915259a9a" />
 
 ## Libraries used
 
